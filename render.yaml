@@ -1,0 +1,11 @@
+# Exported from Render on 2024-05-09T15:59:57Z
+services:
+- type: web
+  name: login
+  runtime: node
+  repo: https://github.com/shaanKeshri/login
+  plan: free
+  region: oregon
+  buildCommand: npm install
+  startCommand: node index.js
+version: "1"
