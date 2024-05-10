@@ -45,6 +45,7 @@ app.post("/save", (req, res) => {
     id = generateId();
   }
   data[id] = { name, email };
+  fs.writeFileSync("data.json", newJSON);
   writeData(data);
   res.send(`Saved with ID: ${id}`);
 });
