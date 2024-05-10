@@ -1,18 +1,11 @@
 const express = require("express");
-const cors = require("cors");
+const cors = require("cors"); // Import
 const fs = require("fs");
-const path = require("path"); // Import path module
 const app = express();
-
 app.use(express.json());
 app.use(cors());
-
-// Use the environment variable for PORT or default to 3001
-const PORT = process.env.PORT || 3001;
-
-// Set the path for the data.json file relative to the server root
-const FILE_PATH = path.join(__dirname, "data.json");
-
+const PORT = 3001;
+const FILE_PATH = "data.json";
 // Function to generate a unique 4-digit ID
 const generateId = () => {
   let id = "";
@@ -21,7 +14,6 @@ const generateId = () => {
   }
   return id;
 };
-
 // Read the JSON file and parse it
 const readData = () => {
   try {
@@ -32,7 +24,6 @@ const readData = () => {
     return {};
   }
 };
-
 // Write data to the JSON file
 const writeData = (data) => {
   try {
@@ -41,7 +32,6 @@ const writeData = (data) => {
     console.error("Error writing to file:", error);
   }
 };
-
 // API endpoint to save name and email
 app.post("/save", (req, res) => {
   const { name, email } = req.body;
@@ -59,7 +49,6 @@ app.post("/save", (req, res) => {
   writeData(data);
   res.send(`Saved with ID: ${id}`);
 });
-
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
